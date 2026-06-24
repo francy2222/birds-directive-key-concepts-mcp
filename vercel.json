@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/mcp.js": {
+      "includeFiles": "data/key_concepts.json"
+    }
+  },
   "rewrites": [
     { "source": "/api/mcp", "destination": "/api/mcp.js" }
   ]
