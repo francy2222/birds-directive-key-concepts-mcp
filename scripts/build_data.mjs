@@ -50,7 +50,11 @@ const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov
 const MONTHS_IT = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
 // Ogni mese ha 3 decadi: I = giorni 1-10, II = 11-20, III = 21-fine mese
 const DECADE_START_DAY = [1, 11, 21];
-const DECADE_END_DAY   = [10, 20, 31]; // 31 = "fine mese" (approssimazione standard dei Key Concepts)
+// Ultimo giorno reale di ciascun mese (anno non bisestile; feb=28) per la III decade
+const MONTH_LAST_DAY = [31,28,31,30,31,30,31,31,30,31,30,31];
+function decadeEndDay(month /*1..12*/, dec /*0,1,2*/) {
+  return dec === 2 ? MONTH_LAST_DAY[month - 1] : [10, 20][dec];
+}
 
 function decadeToLabel(idx /*1..36*/) {
   const month = Math.floor((idx - 1) / 3);
@@ -66,7 +70,7 @@ function decadeStartDate(idx) {
 function decadeEndDate(idx) {
   const month = Math.floor((idx - 1) / 3);
   const dec = (idx - 1) % 3;
-  return { month: month + 1, day: DECADE_END_DAY[dec] };
+  return { month: month + 1, day: decadeEndDay(month + 1, dec) };
 }
 function fmtIT(d) { return `${d.day} ${MONTHS_IT[d.month - 1]}`; }
 
