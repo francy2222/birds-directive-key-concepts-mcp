@@ -1,0 +1,11 @@
+{
+  "name": "birds-directive-key-concepts-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing EU Birds Directive Art. 7(4) Key Concepts data (reproduction and pre-nuptial migration periods per huntable species and Member State).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build_data.mjs",
+    "test": "node test_local.mjs"
+  },
+  "license": "MIT"
+}
